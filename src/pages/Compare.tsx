@@ -170,7 +170,7 @@ export default function Compare() {
                   {cols.has('duration') && <Td>{r.durationMonths} mo</Td>}
                   {cols.has('intake') && <Td>{r.intake}</Td>}
                   {cols.has('requirements') && (
-                    <Td className="text-xs text-muted">{r.reqs.join(', ') || '—'}</Td>
+                    <Td size="sm" className="text-muted">{r.reqs.join(', ') || '—'}</Td>
                   )}
                   <Td>
                     <ProgressBar pct={r.readiness} label={`${r.name} readiness`} />

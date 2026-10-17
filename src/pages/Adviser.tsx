@@ -90,7 +90,7 @@ export default function Adviser() {
                     <Td>
                       {r.ready}/{r.required}
                     </Td>
-                    <Td className="text-xs text-muted">
+                    <Td size="sm" className="text-muted">
                       {m.map((x) => REQUIREMENT_LABELS[x.requirement.type]).join(', ') || '—'}
                     </Td>
                   </tr>

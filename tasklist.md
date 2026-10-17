@@ -42,7 +42,7 @@ Rules: execute strictly the first `- [ ]` item; run its Verification Gate; only 
 - [x] 6.1 Accessibility pass: contrast ≥ 4.5:1, focus rings, labels, keyboard nav. Gate: manual audit at 1440 px.
 - [x] 6.2 Playwright smoke: landing → sign-up → dashboard → compare → sign-out. Gate: `npm run e2e` green.
 - [x] 6.3 README: links, setup, testing checklist, post-MVP list. Gate: renders on GitHub.
-- [ ] 6.4 Push `main`; GitHub Actions deploy green; live URL loads; smoke flows pass in production. Gate: live URL check.
+- [x] 6.4 Push `main`; GitHub Actions deploy green; live URL loads; smoke flows pass in production. Gate: live URL check.
 
 ## Deferred (Phase 2)
 - Supabase backend (Postgres, Auth, RLS), multi-device sync

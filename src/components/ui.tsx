@@ -334,8 +334,20 @@ export const Th = ({
     {children}
   </th>
 );
-export const Td = ({ children, className }: { children?: ReactNode; className?: string }) => (
-  <td className={cx('px-3 py-3 align-top text-[15px]', className)}>{children}</td>
+export const Td = ({
+  children,
+  className,
+  size = 'md',
+}: {
+  children?: ReactNode;
+  className?: string;
+  size?: 'sm' | 'md';
+}) => (
+  <td
+    className={cx('px-3 py-3 align-top', size === 'sm' ? 'text-[13px]' : 'text-[15px]', className)}
+  >
+    {children}
+  </td>
 );
 
 /** Date tile used in deadline lists. */
