@@ -1,122 +1,50 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import AppShell from './components/AppShell';
+import PublicLayout from './components/PublicLayout';
+import RequireAuth from './components/RequireAuth';
+import Adviser from './pages/Adviser';
+import { Login, Reset, SignOut, SignUp } from './pages/Auth';
+import Compare from './pages/Compare';
+import Dashboard from './pages/Dashboard';
+import Deadlines from './pages/Deadlines';
+import Documents from './pages/Documents';
+import Landing from './pages/Landing';
+import Pricing from './pages/Pricing';
+import ProgrammeDetail from './pages/ProgrammeDetail';
+import Settings from './pages/Settings';
+import Tasks from './pages/Tasks';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    <HashRouter>
+      <Routes>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/reset" element={<Reset />} />
+          <Route path="/signout" element={<SignOut />} />
+        </Route>
+        <Route element={<RequireAuth />}>
+          <Route path="/app" element={<AppShell />}>
+            <Route index element={<Dashboard />} />
+            <Route path="compare" element={<Compare />} />
+            <Route path="programmes/:id" element={<ProgrammeDetail />} />
+            <Route path="tasks" element={<Tasks />} />
+            <Route path="documents" element={<Documents />} />
+            <Route path="deadlines" element={<Deadlines />} />
+            <Route path="adviser" element={<Adviser />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        </Route>
+        <Route path="*" element={<PublicLayout />}>
+          <Route
+            path="*"
+            element={<p className="p-10 text-center text-muted">Page not found.</p>}
+          />
+        </Route>
+      </Routes>
+    </HashRouter>
+  );
 }
-
-export default App
