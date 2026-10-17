@@ -7,7 +7,7 @@ function AuthCard({ title, children }: { title: string; children: React.ReactNod
   return (
     <div className="mx-auto max-w-md px-6 py-12">
       <h1 className="mb-6 text-2xl font-semibold">{title}</h1>
-      <div className="rounded-lg border border-line bg-white p-6">{children}</div>
+      <div className="rounded-sheet border border-line bg-card p-6">{children}</div>
     </div>
   );
 }
@@ -79,7 +79,7 @@ export function SignUp() {
         </Button>
         <p className="text-center text-sm text-muted">
           Already have an account?{' '}
-          <Link to="/login" className="text-accent-strong hover:underline">
+          <Link to="/login" className="text-accent font-semibold hover:underline">
             Sign in
           </Link>
         </p>
@@ -130,10 +130,10 @@ export function Login() {
           Sign in
         </Button>
         <p className="flex justify-between text-sm text-muted">
-          <Link to="/reset" className="text-accent-strong hover:underline">
+          <Link to="/reset" className="text-accent font-semibold hover:underline">
             Forgot password?
           </Link>
-          <Link to="/signup" className="text-accent-strong hover:underline">
+          <Link to="/signup" className="text-accent font-semibold hover:underline">
             Create account
           </Link>
         </p>
@@ -187,7 +187,7 @@ export function Reset() {
           Update password
         </Button>
         <p className="text-center text-sm">
-          <Link to="/login" className="text-accent-strong hover:underline">
+          <Link to="/login" className="text-accent font-semibold hover:underline">
             Back to sign in
           </Link>
         </p>

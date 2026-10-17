@@ -52,7 +52,7 @@ export default function Settings() {
           <p className="mt-1 text-sm text-muted">Free plan allows up to 3 active programmes.</p>
           <Link
             to="/pricing"
-            className="mt-3 inline-block text-sm text-accent-strong hover:underline"
+            className="mt-3 inline-block text-sm text-accent font-semibold hover:underline"
           >
             Change plan →
           </Link>

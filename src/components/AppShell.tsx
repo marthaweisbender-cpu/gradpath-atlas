@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useCurrentUser } from '../store/useAppStore';
-import { Banner, Button } from './ui';
+import { Banner, Button, Waves } from './ui';
 
 const nav = [
   { to: '/app', label: 'Dashboard', end: true },
@@ -15,22 +15,39 @@ const nav = [
 export default function AppShell() {
   const user = useCurrentUser();
   const navigate = useNavigate();
+  const initials = (user?.name ?? '?')
+    .split(' ')
+    .map((p) => p[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
-    <div className="min-h-screen lg:grid lg:grid-cols-[240px_1fr]">
-      <aside className="border-b border-line bg-white lg:border-r lg:border-b-0">
-        <div className="flex items-center gap-2 px-5 py-4">
+    <div className="min-h-screen lg:grid lg:grid-cols-[232px_1fr]">
+      <aside className="relative overflow-hidden bg-indigo text-accent-soft">
+        <Waves
+          light
+          className="pointer-events-none absolute -bottom-2 -left-5 hidden h-24 w-72 opacity-25 lg:block"
+        />
+        <div className="flex items-center gap-2.5 px-6 py-5">
           <Logo />
-          <span className="font-semibold">GradPath Atlas</span>
+          <span className="font-display font-bold text-card">GradPath Atlas</span>
         </div>
-        <nav aria-label="Main" className="flex gap-1 overflow-x-auto px-3 pb-3 lg:flex-col lg:pb-0">
+        <nav
+          aria-label="Main"
+          className="flex gap-1 overflow-x-auto px-3.5 pb-3 lg:flex-col lg:pb-0"
+        >
           {nav.map((n) => (
             <NavLink
               key={n.to}
               to={n.to}
               end={n.end}
               className={({ isActive }) =>
-                `rounded-md px-3 py-2 text-sm whitespace-nowrap ${isActive ? 'bg-accent-soft font-medium text-accent-strong' : 'text-muted hover:bg-surface hover:text-ink'}`
+                `rounded-[10px] px-3 py-2.5 text-[15px] whitespace-nowrap transition ${
+                  isActive
+                    ? 'bg-card/15 font-semibold text-card'
+                    : 'hover:bg-card/10 hover:text-card'
+                }`
               }
             >
               {n.label}
@@ -39,22 +56,32 @@ export default function AppShell() {
         </nav>
       </aside>
       <div className="flex min-w-0 flex-col">
-        <header className="flex h-14 items-center justify-between border-b border-line bg-white px-6">
+        <header className="flex h-[60px] items-center justify-between border-b border-line bg-card/80 px-6 backdrop-blur">
           <span className="hidden text-sm text-muted sm:inline">Application season 2026/27</span>
           <div className="flex items-center gap-3 text-sm">
-            <span>{user?.name}</span>
-            <span className="rounded-full bg-surface px-2 py-0.5 text-xs text-muted">
-              {user?.plan} plan
+            <span className="rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-semibold text-indigo">
+              {user?.plan === 'season'
+                ? 'Application Pass'
+                : user?.plan === 'adviser'
+                  ? 'Adviser licence'
+                  : 'Free plan'}
+            </span>
+            <span
+              aria-hidden="true"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-dusty text-[13px] font-bold text-card"
+            >
+              {initials}
             </span>
             <Button variant="secondary" size="sm" onClick={() => navigate('/signout')}>
               Sign out
             </Button>
           </div>
         </header>
-        <main className="flex-1 px-6 py-6">
+        <main className="flex-1 px-6 py-7">
           {user?.plan !== 'free' && (
             <Banner tone="accent">
-              Test mode: your {user?.plan} plan was activated without payment.
+              Test mode: your {user?.plan === 'season' ? 'Application Pass' : 'Adviser licence'} was
+              activated without payment.
             </Banner>
           )}
           <Outlet />
@@ -64,14 +91,16 @@ export default function AppShell() {
   );
 }
 
-export const Logo = () => (
-  <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-    <rect width="32" height="32" rx="7" fill="#1f6f78" />
+export const Logo = ({ size = 28 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+    <rect width="48" height="48" rx="12" fill="#fbf8f2" />
+    <path d="M8 34a16 16 0 0 1 32 0" fill="none" stroke="#2e63ad" strokeWidth="3" />
+    <path d="M14 34a10 10 0 0 1 20 0" fill="none" stroke="#7d9ac4" strokeWidth="3" />
     <path
-      d="M8 20l8-9 8 9M12 20h8"
-      stroke="#fff"
-      strokeWidth="2.5"
+      d="M24 34V22m0 0l-5 5m5-5l5 5"
       fill="none"
+      stroke="#1f3f7c"
+      strokeWidth="3"
       strokeLinecap="round"
       strokeLinejoin="round"
     />

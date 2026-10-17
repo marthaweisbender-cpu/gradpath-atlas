@@ -18,9 +18,9 @@ export default function Deadlines() {
       {items.length === 0 ? (
         <EmptyState title="No deadlines" />
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-line bg-white">
+        <div className="overflow-x-auto rounded-sheet border border-line bg-card">
           <table className="w-full border-collapse">
-            <thead className="border-b border-line bg-surface">
+            <thead className="border-b border-line-soft bg-surface">
               <tr>
                 <Th>Date</Th>
                 <Th>Item</Th>
@@ -29,7 +29,7 @@ export default function Deadlines() {
                 <Th>Status</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-line">
+            <tbody className="divide-y divide-line-soft">
               {items.map((d) => (
                 <tr key={`${d.kind}-${d.id}`} className={d.done ? 'text-muted' : ''}>
                   <Td className="whitespace-nowrap">{formatDate(d.date)}</Td>

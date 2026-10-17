@@ -38,7 +38,7 @@ export default function Pricing() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-12">
-      <h1 className="text-3xl font-semibold tracking-tight">Pricing</h1>
+      <h1 className="text-[34px] font-extrabold tracking-tight text-indigo">Pricing</h1>
       <p className="mt-2 text-muted">Students pay once per season. Institutions license seats.</p>
       <div className="mt-4">
         <Banner tone="warn">
@@ -51,10 +51,10 @@ export default function Pricing() {
           return (
             <div
               key={t.plan}
-              className={`rounded-lg border bg-white p-6 ${t.plan === 'season' ? 'border-accent' : 'border-line'}`}
+              className={`rounded-sheet border bg-card p-6 ${t.plan === 'season' ? 'border-2 border-accent shadow-card' : 'border-line'}`}
             >
-              <h2 className="text-lg font-semibold">{t.name}</h2>
-              <p className="mt-1 text-2xl font-semibold">{t.price}</p>
+              <h2 className="font-display text-lg font-bold">{t.name}</h2>
+              <p className="mt-1 font-display text-2xl font-extrabold text-indigo">{t.price}</p>
               <p className="mt-1 text-sm text-muted">{t.blurb}</p>
               <ul className="mt-4 space-y-1 text-sm">
                 {t.features.map((f) => (

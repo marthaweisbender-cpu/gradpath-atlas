@@ -53,14 +53,14 @@ export default function Tasks() {
                   g.id ? (
                     <Link
                       to={`/app/programmes/${g.id}`}
-                      className="text-sm text-accent-strong hover:underline"
+                      className="text-sm text-accent font-semibold hover:underline"
                     >
                       Open programme
                     </Link>
                   ) : undefined
                 }
               >
-                <ul className="divide-y divide-line">
+                <ul className="divide-y divide-line-soft">
                   {list.map((t) => {
                     const blocked = isBlocked(t, ws.tasks);
                     return (

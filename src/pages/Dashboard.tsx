@@ -7,6 +7,7 @@ import {
   EmptyState,
   PageHeader,
   ProgressBar,
+  DateTile,
   RiskBadge,
   StatusBadge,
 } from '../components/ui';
@@ -46,9 +47,11 @@ export default function Dashboard() {
       />
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {stats.map(([l, v]) => (
-          <div key={l} className="rounded-lg border border-line bg-white p-5">
+          <div key={l} className="rounded-sheet border border-line bg-card p-5">
             <p className="text-sm text-muted">{l}</p>
-            <p className="mt-1 text-3xl font-semibold tabular-nums">{v}</p>
+            <p className="mt-1 font-display text-[30px] font-extrabold tabular-nums text-indigo">
+              {v}
+            </p>
           </div>
         ))}
       </div>
@@ -56,7 +59,7 @@ export default function Dashboard() {
         <Card
           title="Programme readiness"
           action={
-            <Link to="/app/compare" className="text-sm text-accent-strong hover:underline">
+            <Link to="/app/compare" className="text-sm text-accent font-semibold hover:underline">
               Compare all
             </Link>
           }
@@ -68,7 +71,7 @@ export default function Dashboard() {
               action={<Button onClick={() => setOpen(true)}>Add programme</Button>}
             />
           ) : (
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line-soft">
               {active.map((p) => {
                 const r = readiness(p.id, ws.requirements, ws.documents);
                 return (
@@ -96,7 +99,10 @@ export default function Dashboard() {
           <Card
             title="Next deadlines"
             action={
-              <Link to="/app/deadlines" className="text-sm text-accent-strong hover:underline">
+              <Link
+                to="/app/deadlines"
+                className="text-sm text-accent font-semibold hover:underline"
+              >
                 All
               </Link>
             }
@@ -111,12 +117,10 @@ export default function Dashboard() {
             ) : (
               <ul className="space-y-3">
                 {upcoming.map((d) => (
-                  <li
-                    key={`${d.kind}-${d.id}`}
-                    className="flex items-start justify-between gap-3 text-sm"
-                  >
-                    <div>
-                      <p className="font-medium">{d.title}</p>
+                  <li key={`${d.kind}-${d.id}`} className="flex items-center gap-3 text-sm">
+                    <DateTile iso={d.date} risk={d.risk} />
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-semibold">{d.title}</p>
                       <p className="text-xs text-muted">{formatDate(d.date)}</p>
                     </div>
                     <RiskBadge risk={d.risk} days={d.days} />
@@ -128,7 +132,10 @@ export default function Dashboard() {
           <Card
             title="Missing items"
             action={
-              <Link to="/app/documents" className="text-sm text-accent-strong hover:underline">
+              <Link
+                to="/app/documents"
+                className="text-sm text-accent font-semibold hover:underline"
+              >
                 Documents
               </Link>
             }

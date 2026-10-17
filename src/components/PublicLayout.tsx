@@ -6,8 +6,8 @@ import { Button } from './ui';
 export default function PublicLayout() {
   const authed = useAppStore((s) => s.currentUserId !== null);
   return (
-    <div className="min-h-screen bg-white">
-      <header className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <div className="min-h-screen bg-surface">
+      <header className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 font-display">
         <Link to="/" className="flex items-center gap-2 font-semibold">
           <Logo /> GradPath Atlas
         </Link>

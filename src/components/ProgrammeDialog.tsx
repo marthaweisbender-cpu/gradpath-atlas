@@ -86,7 +86,7 @@ export default function ProgrammeDialog({
           <option value="__new">+ New university…</option>
         </Select>
         {v.universityId === '__new' && (
-          <div className="grid grid-cols-3 gap-3 rounded-md bg-surface p-3">
+          <div className="grid grid-cols-3 gap-3 rounded-card bg-surface p-3">
             <Field
               label="Name"
               id="nu-name"

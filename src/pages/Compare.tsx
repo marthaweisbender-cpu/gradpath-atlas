@@ -77,7 +77,7 @@ export default function Compare() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Programme, university, field"
-            className="h-9 w-64 rounded-md border border-line bg-white px-3 text-sm"
+            className="h-9 w-64 rounded-card border border-line bg-card px-3 text-sm"
           />
         </div>
         <div>
@@ -88,7 +88,7 @@ export default function Compare() {
             id="cmp-status"
             value={status}
             onChange={(e) => setStatus(e.target.value as ProgrammeStatus | 'all')}
-            className="h-9 rounded-md border border-line bg-white px-3 text-sm"
+            className="h-9 rounded-card border border-line bg-card px-3 text-sm"
           >
             <option value="all">All</option>
             {PROGRAMME_STATUSES.map((s) => (
@@ -120,9 +120,9 @@ export default function Compare() {
       {rows.length === 0 ? (
         <EmptyState title="No programmes match" body="Adjust the filters or add a programme." />
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-line bg-white">
+        <div className="overflow-x-auto rounded-sheet border border-line bg-card">
           <table className="w-full min-w-[960px] border-collapse">
-            <thead className="border-b border-line bg-surface">
+            <thead className="border-b border-line-soft bg-surface">
               <tr>
                 <Th ariaSort={ariaSort('name')}>{sortBtn('name', 'Programme')}</Th>
                 <Th ariaSort={ariaSort('university')}>{sortBtn('university', 'University')}</Th>
@@ -144,9 +144,9 @@ export default function Compare() {
                 </Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-line">
+            <tbody className="divide-y divide-line-soft">
               {rows.map((r) => (
-                <tr key={r.id} className="hover:bg-surface/60">
+                <tr key={r.id} className="hover:bg-accent-soft/30">
                   <Td>
                     <Link to={`/app/programmes/${r.id}`} className="font-medium hover:underline">
                       {r.name}

@@ -51,7 +51,7 @@ export default function Documents() {
           {ws.documents.length === 0 ? (
             <EmptyState title="No documents yet" />
           ) : (
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line-soft">
               {ws.documents.map((d) => (
                 <li key={d.id} className="flex items-center gap-3 py-2">
                   <div className="flex-1">
@@ -70,7 +70,7 @@ export default function Documents() {
                     onChange={(e) =>
                       ws.updateDocument(d.id, { status: e.target.value as DocumentStatus })
                     }
-                    className="h-8 rounded-md border border-line bg-white px-2 text-xs"
+                    className="h-8 rounded-card border border-line bg-card px-2 text-xs"
                   >
                     {statuses.map((s) => (
                       <option key={s} value={s}>
@@ -91,7 +91,7 @@ export default function Documents() {
               ))}
             </ul>
           )}
-          <form onSubmit={add} className="mt-4 space-y-3 rounded-md bg-surface p-3">
+          <form onSubmit={add} className="mt-4 space-y-3 rounded-card bg-surface p-3">
             <Field
               label="New document"
               id="nd-name"
@@ -139,7 +139,7 @@ export default function Documents() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full min-w-[640px] border-collapse">
-                <thead className="border-b border-line bg-surface">
+                <thead className="border-b border-line-soft bg-surface">
                   <tr>
                     <Th>Document</Th>
                     {programmes.map((p) => (
@@ -151,7 +151,7 @@ export default function Documents() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-line">
+                <tbody className="divide-y divide-line-soft">
                   {ws.documents.map((d) => (
                     <tr key={d.id}>
                       <Td className="whitespace-nowrap">

@@ -63,7 +63,7 @@ export default function Adviser() {
         </p>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
-            <thead className="border-b border-line bg-surface">
+            <thead className="border-b border-line-soft bg-surface">
               <tr>
                 <Th>Programme</Th>
                 <Th>University</Th>
@@ -74,7 +74,7 @@ export default function Adviser() {
                 <Th>Missing</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-line">
+            <tbody className="divide-y divide-line-soft">
               {ws.programmes.map((p) => {
                 const r = readiness(p.id, ws.requirements, ws.documents);
                 const m = missing.filter((x) => x.programmeId === p.id);

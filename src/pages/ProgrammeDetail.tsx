@@ -42,7 +42,7 @@ export default function ProgrammeDetail() {
     return (
       <div>
         <p>Programme not found.</p>
-        <Link to="/app/compare" className="text-accent-strong hover:underline">
+        <Link to="/app/compare" className="text-accent font-semibold hover:underline">
           Back to comparison
         </Link>
       </div>
@@ -112,7 +112,7 @@ export default function ProgrammeDetail() {
         <Stat label="Deadline" value={formatDate(p.deadline)} />
         <Stat label="Tuition" value={`$${p.tuitionUsd.toLocaleString()}`} />
         <Stat label="Duration" value={`${p.durationMonths} months · ${p.intake} intake`} />
-        <div className="rounded-lg border border-line bg-white p-4">
+        <div className="rounded-sheet border border-line bg-card p-4">
           <label htmlFor="pd-status" className="text-xs text-muted">
             Status
           </label>
@@ -120,7 +120,7 @@ export default function ProgrammeDetail() {
             id="pd-status"
             value={p.status}
             onChange={(e) => ws.setProgrammeStatus(p.id, e.target.value as ProgrammeStatus)}
-            className="mt-1 h-9 w-full rounded-md border border-line bg-white px-2 text-sm"
+            className="mt-1 h-9 w-full rounded-card border border-line bg-card px-2 text-sm"
           >
             {PROGRAMME_STATUSES.map((s) => (
               <option key={s} value={s}>
@@ -134,7 +134,7 @@ export default function ProgrammeDetail() {
         <div className="space-y-6">
           <Card title={`Requirements · ${r.ready}/${r.required} ready`}>
             <ProgressBar pct={r.pct} label="Readiness" />
-            <ul className="mt-4 divide-y divide-line">
+            <ul className="mt-4 divide-y divide-line-soft">
               {reqs.map((q) => {
                 const doc = ws.documents.find((d) => d.id === q.documentId);
                 return (
@@ -159,7 +159,7 @@ export default function ProgrammeDetail() {
                           id={`link-${q.id}`}
                           value={q.documentId ?? ''}
                           onChange={(e) => ws.linkDocument(q.id, e.target.value || null)}
-                          className="h-8 min-w-0 flex-1 rounded-md border border-line bg-white px-2 text-xs"
+                          className="h-8 min-w-0 flex-1 rounded-card border border-line bg-card px-2 text-xs"
                         >
                           <option value="">— not linked —</option>
                           {docsOfType(q.type).map((d) => (
@@ -185,7 +185,7 @@ export default function ProgrammeDetail() {
             </ul>
             <form
               onSubmit={addReq}
-              className="mt-4 grid gap-3 rounded-md bg-surface p-3 md:grid-cols-[160px_1fr_auto_auto] md:items-end"
+              className="mt-4 grid gap-3 rounded-card bg-surface p-3 md:grid-cols-[160px_1fr_auto_auto] md:items-end"
             >
               <Select
                 label="Type"
@@ -223,7 +223,7 @@ export default function ProgrammeDetail() {
             {tasks.length === 0 && (
               <p className="text-sm text-muted">No tasks for this programme.</p>
             )}
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line-soft">
               {tasks.map((t) => {
                 const blocked = isBlocked(t, ws.tasks);
                 return (
@@ -260,7 +260,7 @@ export default function ProgrammeDetail() {
             </ul>
             <form
               onSubmit={addTask}
-              className="mt-4 grid gap-3 rounded-md bg-surface p-3 md:grid-cols-[1fr_150px_1fr_auto] md:items-end"
+              className="mt-4 grid gap-3 rounded-card bg-surface p-3 md:grid-cols-[1fr_150px_1fr_auto] md:items-end"
             >
               <Field
                 label="New task"
@@ -303,7 +303,7 @@ export default function ProgrammeDetail() {
           <Card title="Notes">
             <ul className="space-y-3">
               {notes.map((n) => (
-                <li key={n.id} className="rounded-md border border-line p-3 text-sm">
+                <li key={n.id} className="rounded-card border border-line-soft p-3 text-sm">
                   <p>{n.body}</p>
                   <div className="mt-2 flex items-center justify-between text-xs text-muted">
                     <span>{new Date(n.createdAt).toLocaleDateString('en-GB')}</span>
@@ -335,7 +335,7 @@ export default function ProgrammeDetail() {
                 onChange={(e) => setNote(e.target.value)}
                 rows={3}
                 placeholder="Add a note…"
-                className="w-full rounded-md border border-line p-2 text-sm"
+                className="w-full rounded-card border border-line p-2 text-sm"
               />
               <Button type="submit" variant="secondary" size="sm">
                 Add note
@@ -365,7 +365,7 @@ export default function ProgrammeDetail() {
 }
 
 const Stat = ({ label, value }: { label: string; value: string }) => (
-  <div className="rounded-lg border border-line bg-white p-4">
+  <div className="rounded-sheet border border-line bg-card p-4">
     <p className="text-xs text-muted">{label}</p>
     <p className="mt-1 text-sm font-medium">{value}</p>
   </div>
