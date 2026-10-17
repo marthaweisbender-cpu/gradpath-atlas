@@ -5,6 +5,7 @@ Master's application planning workspace for final-year students: compare program
 - **Live app:** https://marthaweisbender-cpu.github.io/gradpath-atlas/
 - **Repository:** https://github.com/marthaweisbender-cpu/gradpath-atlas
 - **Specs:** [PRD.md](PRD.md) · [tasklist.md](tasklist.md) · agent rules in [AGENTS.md](AGENTS.md)
+- **Demo guide:** [DEMO_HOW_TO.pdf](DEMO_HOW_TO.pdf) (source: `docs/demo-how-to.html`)
 
 All universities, programmes and people in the app are fictional.
 
